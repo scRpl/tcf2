@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Header } from './Components/Header';
-import { VendorList } from './Components/VendorList';
+import { Vendor } from './Components/Vendor';
 
 class App extends Component {
   constructor(props) {
@@ -44,8 +44,11 @@ _getSearchedWord(word) {
   render() {
     return (
       <div class="container-fluid">
-        <Header getSearchWord={this._getSearchedWord.bind(this)} />
-        <VendorList lastUpdated={this.state.lastUpdated} />
+        <Header
+        getSearchWord={this._getSearchedWord.bind(this)}
+        searchedVendor={this.state.searchedVendor}
+        />
+        <Vendor lastUpdated={this.state.lastUpdated} />
       </div>
     );
   }
