@@ -94,7 +94,7 @@ const Menu = styled.ul(
     borderStyle: 'solid',
     zIndex: 10
   },
-  ({isOpen}) => ({
+  ({isOpen, inputValue}) => ({
     border: isOpen ? null : 'none',
   }),
 )

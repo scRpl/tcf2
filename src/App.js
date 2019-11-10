@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Header } from './Components/Header';
-import { Vendor } from './Components/Vendor';
+import Header from './Components/Header';
+import Vendor from './Components/Vendor';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { css } from 'emotion';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      vendors: [],
+      vendors: {},
       purposes: [],
       specialPurposes: [],
       features: [],
       specialFeatures: [],
       vendorListVersion: [],
       lastUpdated: [],
-      searchedVendor: ''
+      loaded: null
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
 async componentDidMount() {
@@ -30,33 +33,54 @@ async componentDidMount() {
       features: Object.values(data.features),
       specialFeatures: Object.values(data.specialFeatures),
       vendorListVersion: data.vendorListVersion,
-      lastUpdated: data.lastUpdated
+      lastUpdated: data.lastUpdated,
+      loaded: true
     })
   } catch(e) {
     console.log(e)
   }
 }
 
-_getSearchedWord(word) {
-  this.setState({ searchedVendor: word })
-}
+handleChange(selectedItem) {
+  const { history } = this.props
+  const vendor = selectedItem ? `/${selectedItem.id}` : '/';
+  history.push(vendor);
+};
 
   render() {
+
     return (
       <div className="container-fluid">
-        <Header
-        getSearchWord={this._getSearchedWord.bind(this)}
-        searchedVendor={this.state.searchedVendor}
-        vendors={this.state.vendors}
-        />
-        <Vendor
-        lastUpdated={this.state.lastUpdated}
-        vendors={this.state.vendors}
-        purposes={this.state.purposes}
-        />
+          <Header
+          vendors={this.state.vendors}
+          onChange={this.handleChange}
+          />
+          <Switch>
+            <Route path='/:id'>
+            {this.state.loaded ?
+              <Vendor
+              vendors={this.state.vendors}
+              purposesProp={this.state.purposes}
+              specialPurposesProp={this.state.specialPurposes}
+              featuresProp={this.state.features}
+              specialFeaturesProp={this.state.specialFeatures}
+              /> : null}
+            </Route>
+            <Route exact path="/">
+              <div className={css({
+                display: 'flex',
+                flexDirection: 'column',
+                textAlign: 'center'
+              })}>
+                <h5>Current Vendor List Version: <span className="text-primary">{this.state.vendorListVersion}</span></h5>
+                <h5>Last Update: <span className="text-primary">{this.state.lastUpdated}</span></h5>
+                <h5>Here will be your search results.</h5>
+              </div>
+            </Route>
+          </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

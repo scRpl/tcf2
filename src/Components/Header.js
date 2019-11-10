@@ -11,9 +11,10 @@ import {
   itemToString,
 } from './styled';
 import matchSorter from 'match-sorter';
+import { withRouter } from 'react-router-dom';
 
 
-export class Header extends Component {
+class Header extends Component {
   render() {
 
   function getItems(filter) {
@@ -30,6 +31,7 @@ export class Header extends Component {
           <div className={css({ width: 300, margin: 'auto' })}>
           <Downshift
             itemToString={itemToString}
+            onChange={this.props.onChange}
           >
             {({
               getLabelProps,
@@ -88,3 +90,5 @@ export class Header extends Component {
     )
   }
 }
+
+export default withRouter(Header);
