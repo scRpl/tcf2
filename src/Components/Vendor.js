@@ -73,7 +73,7 @@ class Vendor extends Component {
               <h5 id="item-2">Purposes</h5>
               {purposes &&
               <table className="table table-sm table-responsive">
-                <caption>Selected purposes</caption>
+                <caption className="text-sm">Consent-based purposes selected by this vendor</caption>
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">ID</th>
@@ -88,7 +88,7 @@ class Vendor extends Component {
               <h5 id="item-3">Legitimate Interest Purposes</h5>
               {legIntPurposes.length > 0 ?
                 <table className="table table-sm table-responsive">
-                  <caption>Selected purposes (legitimate interest)</caption>
+                  <caption>Legitimate interest-based purposes selected by this vendor</caption>
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">ID</th>
@@ -103,7 +103,7 @@ class Vendor extends Component {
               <h5 id="item-4">Flexible Purposes</h5>
               {flexiblePurposes.length > 0 ?
                 <table className="table table-sm table-responsive">
-                  <caption>Flexible purposes</caption>
+                  <caption>Flexible purposes selected by this vendor</caption>
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">ID</th>
@@ -118,7 +118,7 @@ class Vendor extends Component {
               <h5 id="item-5">Special Purposes</h5>
               {specialPurposes.length > 0 ?
                 <table className="table table-sm table-responsive">
-                  <caption>Special Purposes</caption>
+                  <caption>Special Purposes selected by this vendor</caption>
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">ID</th>
@@ -132,11 +132,33 @@ class Vendor extends Component {
                : <p>No special purposes have been selected.</p>}
               <h5 id="item-6">Features</h5>
               {features.length > 0 ?
-                <p>{features.join(', ')}</p>
+                <table className="table table-sm table-responsive">
+                  <caption>Features selected by this vendor</caption>
+                  <thead className="thead-light">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tableRender(featuresToRender, features, featuresProp)}
+                  </tbody>
+                </table>
                : <p>No features have been selected.</p>}
               <h5 id="item-7">Special Features</h5>
               {specialFeatures.length > 0 ?
-                <p>{specialFeatures.join(', ')}</p>
+                <table className="table table-sm table-responsive">
+                  <caption>Special Features selected by this vendor</caption>
+                  <thead className="thead-light">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tableRender(specialFeaturesToRender, specialFeatures, specialFeaturesProp)}
+                  </tbody>
+                </table>
                : <p>No special features have been selected.</p>}
             </div>
           </div>

@@ -34,7 +34,8 @@ async componentDidMount() {
       specialFeatures: Object.values(data.specialFeatures),
       vendorListVersion: data.vendorListVersion,
       lastUpdated: data.lastUpdated,
-      loaded: true
+      loaded: true,
+      lightsOut: false
     })
   } catch(e) {
     console.log(e)
