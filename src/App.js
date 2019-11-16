@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Vendor from './Components/Vendor';
+import Footer from './Components/Footer';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { css } from 'emotion';
 
@@ -58,14 +59,18 @@ handleChange(selectedItem) {
           />
           <Switch>
             <Route path='/:id'>
-            {this.state.loaded ?
+              {this.state.loaded && 
+              <React.Fragment>
               <Vendor
               vendors={this.state.vendors}
               purposesProp={this.state.purposes}
               specialPurposesProp={this.state.specialPurposes}
               featuresProp={this.state.features}
               specialFeaturesProp={this.state.specialFeatures}
-              /> : null}
+              />
+              <Footer />
+              </React.Fragment>
+              }
             </Route>
             <Route exact path="/">
               <div className={css({

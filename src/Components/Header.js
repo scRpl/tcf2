@@ -26,7 +26,7 @@ class Header extends Component {
   const allItems = this.props.vendors;
 
     return (
-      <div className="navbar navbar-light bg-light navbar-nav border-bottom">
+      <div className="navbar navbar-light bg-light navbar-nav border-bottom" style={{marginLeft: '-20px', marginRight: '-15px'}}>
         <span className="navbar-brand mb-0 h1">IAB TCF 2.0 Global Vendor List</span>
           <div className={css({ width: 300, margin: 'auto' })}>
           <Downshift

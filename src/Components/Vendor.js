@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class Vendor extends Component {
+
   render() {
 
     const { vendors, purposesProp, specialPurposesProp, featuresProp, specialFeaturesProp } = this.props;
@@ -48,6 +49,8 @@ class Vendor extends Component {
       return tableRows;
     }
 
+    const domainForLogo = `https://logo.clearbit.com/${policyUrl.split('/')[2]}?size=100`;
+
     return (
       <div className="container">
         <div className="row">
@@ -67,7 +70,7 @@ class Vendor extends Component {
 
           <div className="col-auto">
             <div data-spy="scroll" data-target="#navbar-example3" data-offset="0" style={{position: 'relative', height: 'auto'}}>
-              <h1 id="item-1">{name}</h1>
+              <h1 id="item-1"><img src={domainForLogo} alt='' style={{padding: '20px'}} />{name}</h1>
                   <p className="lead">This company is registed in the TCF 2.0 with a Global Vendor ID: <span className="font-weight-bold text-primary">{id}</span></p>
                   <p className="lead">Privacy policy available at: <a href={policyUrl} target="blank"><span className="font-weight-bold text-primary">{policyUrl}</span></a></p>
               <h5 id="item-2">Purposes</h5>
