@@ -74,7 +74,7 @@ class Vendor extends Component {
                   <p className="lead">This company is registed in the TCF 2.0 with a Global Vendor ID: <span className="font-weight-bold text-primary">{id}</span></p>
                   <p className="lead">Privacy policy available at: <a href={policyUrl} target="blank"><span className="font-weight-bold text-primary">{policyUrl}</span></a></p>
               <h5 id="item-2">Purposes</h5>
-              {purposes &&
+              {purposes.length > 0 ?
               <table className="table table-sm table-responsive">
                 <caption className="text-sm">Consent-based purposes selected by this vendor</caption>
                 <thead className="thead-light">
@@ -86,7 +86,7 @@ class Vendor extends Component {
                 <tbody>
                   {tableRender(purposesToRender, purposes, purposesProp)}
                 </tbody>
-              </table>}
+              </table>: <p>No consent-based purposes have been selected by this vendor.</p>}
 
               <h5 id="item-3">Legitimate Interest Purposes</h5>
               {legIntPurposes.length > 0 ?
